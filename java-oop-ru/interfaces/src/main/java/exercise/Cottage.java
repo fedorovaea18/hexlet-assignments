@@ -16,10 +16,10 @@ public class Cottage implements Home {
 
     @Override
     public String compareTo(Home another) {
-        var compareResult = Integer.compare(this.area(), another.area());
-        if (compareResult > 0) {
+       double anotherArea = another.getArea());
+        if (this.area > anotherArea) {
             return "1";
-        } else if (compareResult < 0) {
+        } else if (this.area < anotherArea) {
             return "-1";
         } else {
             return "0";

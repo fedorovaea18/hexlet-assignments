@@ -12,7 +12,7 @@ public class Flat implements Home {
     }
         
     @Override
-    public Integer getArea() {
+    public double getArea() {
         return (this.area + this.balconyArea);
     }
 
@@ -23,7 +23,7 @@ public class Flat implements Home {
 
     @Override
     public String compareTo(Home another) {
-        var compareResult = Integer.compare(this.getArea(), another.getArea());
+        var compareResult = Double.compare(this.getArea(), another.getArea());
         if (compareResult > 0) {
             return "1";
         } else if (compareResult < 0) {
