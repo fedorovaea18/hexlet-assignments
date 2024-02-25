@@ -1,7 +1,7 @@
 package exercise;
 
 public interface Home {
-    Integer getArea();
+    double getArea();
     String compareTo(Home another);
 }
 
