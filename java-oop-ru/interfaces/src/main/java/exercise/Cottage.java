@@ -16,13 +16,13 @@ public class Cottage implements Home {
 
     @Override
     public String toString() {
-    	return  floorCount + " этажный коттедж площадью " + area + " метров";
+        return  floorCount + " этажный коттедж площадью " + area + " метров";
     }
 
     @Override
     public String compareTo(Home another) {
-       double anotherArea = another.getArea();
-       if (this.area > anotherArea) {
+        double anotherArea = another.getArea();
+        if (this.area > anotherArea) {
             return "1";
         } else if (this.area < anotherArea) {
             return "-1";
