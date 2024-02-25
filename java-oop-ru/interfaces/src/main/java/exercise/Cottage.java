@@ -16,7 +16,7 @@ public class Cottage implements Home {
 
     @Override
     public String compareTo(Home another) {
-       double anotherArea = another.getArea());
+       double anotherArea = another.getArea();
         if (this.area > anotherArea) {
             return "1";
         } else if (this.area < anotherArea) {

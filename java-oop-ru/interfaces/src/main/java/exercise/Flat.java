@@ -5,12 +5,12 @@ public class Flat implements Home {
     private double balconyArea;
     private Integer floor;
 
-    public Flat (double area, double balconyArea, Integer floor) {
+    public Flat(double area, double balconyArea, Integer floor) {
         this.area = area;
         this.balconyArea = balconyArea;
         this.floor = floor;
     }
-        
+
     @Override
     public double getArea() {
         return (this.area + this.balconyArea);
