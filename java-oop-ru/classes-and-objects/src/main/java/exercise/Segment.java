@@ -19,9 +19,9 @@ public class Segment {
     }
     
     public Integer getMidPoint() {
-        return (point2 + point1) / 2;
+        var midX = (point1.getX() + point2.getX()) / 2;
+        var midY = (point1.getY() + point2.getY()) / 2;
+        return new Point(midX, midY);
     }
 }    
-// BEGIN
 
-// END
