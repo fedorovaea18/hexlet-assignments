@@ -18,7 +18,7 @@ public class Segment {
         return point2;
     }
     
-    public Integer getMidPoint()() {
+    public Integer getMidPoint() {
         return (point2 + point1) / 2;
     }
 }    
