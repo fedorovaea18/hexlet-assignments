@@ -28,10 +28,13 @@ class FileKVTest {
         Files.writeString(filepath, content, StandardOpenOption.CREATE);
     }
     
-   @Test
+    @Test
     public void testFileKV() {
         String filePath = "src/test/resources/file";
-        KeyValueStorage storage = new FileKV(filePath, Map.of("key", "value"));
+        Map<String, String> initialData = new HashMap<>();
+        initialData.put("key", "value");
+
+        KeyValueStorage storage = new FileKV(filePath, initialData);
 
         assertEquals("value", storage.get("key", "default"));
 
