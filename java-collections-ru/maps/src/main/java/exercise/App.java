@@ -9,7 +9,9 @@ public class App {
         String[] words = sentence.split(" ");
         
         for (String word : words) {
-            wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
+            if (!word.isEmpty()) {
+                wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
+            }
         }
         
         return wordCount;
