@@ -27,7 +27,7 @@ class FileKVTest {
         String content = mapper.writeValueAsString(new HashMap<String, String>());
         Files.writeString(filepath, content, StandardOpenOption.CREATE);
     }
-    
+
     @Test
     public void testFileKV() {
         String filePath = "src/test/resources/file";
