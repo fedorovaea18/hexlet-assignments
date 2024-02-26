@@ -2,7 +2,6 @@ package exercise;
 
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
 public class App {
     public static void swapKeyValue(KeyValueStorage storage) {
