@@ -18,6 +18,10 @@ public class App {
     }
 
     public static String toString(Map<String, Integer> wordCount) {
+        if (wordCount.isEmpty()) {
+            return "{}";
+        }
+
         StringBuilder result = new StringBuilder();
         result.append("{\n");
         for (Map.Entry<String, Integer> entry : wordCount.entrySet()) {
