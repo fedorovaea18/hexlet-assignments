@@ -22,8 +22,22 @@ class FileKVTest {
         String content = mapper.writeValueAsString(new HashMap<String, String>());
         Files.writeString(filepath, content, StandardOpenOption.CREATE);
     }
-
-    // BEGIN
     
-    // END
+   @Test
+    public void testFileKV() {
+        String filePath = "src/test/resources/file";
+        KeyValueStorage storage = new FileKV(filePath, Map.of("key", "value"));
+
+        assertEquals("value", storage.get("key", "default"));
+
+        storage.set("key2", "value2");
+        assertEquals("value2", storage.get("key2", "default"));
+
+        storage.unset("key2");
+        assertEquals("default", storage.get("key2", "default"));
+
+        Map<String, String> data = storage.toMap();
+        assertEquals(data, Map.of("key", "value"));
+    }
 }
+
