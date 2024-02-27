@@ -21,7 +21,7 @@ class Car {
         this.color = color;
         this.owner = owner;
     }
- 
+
     public String serialize() {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
