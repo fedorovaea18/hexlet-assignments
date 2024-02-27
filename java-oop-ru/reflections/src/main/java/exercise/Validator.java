@@ -35,5 +35,4 @@ public class Validator {
         assertEquals(expected, notValidFields);
     }
 }
-}
 
