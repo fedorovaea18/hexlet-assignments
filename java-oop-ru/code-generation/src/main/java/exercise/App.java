@@ -14,7 +14,9 @@ public class App {
         try {
             String jsonCar = objectMapper.writeValueAsString(car);
             Files.write(path, jsonCar.getBytes());
-        } catch (JsonProcessingException | IOException e) {
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
