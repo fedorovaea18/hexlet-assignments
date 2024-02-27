@@ -1,14 +1,14 @@
 package exercise;
 
-import lombok.Value;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Getter
 class User {
-    int id;
-    String firstName;
-    String lastName;
-    int age;
+    private final int id;
+    private final String firstName;
+    private final String lastName;
+    private final int age;
 }
+

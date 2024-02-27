@@ -1,9 +1,31 @@
-package exercise;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.nio.file.Path;
+import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.StandardOpenOption;
+import java.nio.file.Path;
 
-// BEGIN
+public class App {
 
-// END
+    public static void save(Path path, Car car) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            String jsonCar = objectMapper.writeValueAsString(car);
+            Files.write(path, jsonCar.getBytes());
+        } catch (JsonProcessingException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Car extract(Path path) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            String jsonCar = Files.readString(path);
+            return objectMapper.readValue(jsonCar, Car.class);
+        } catch (IOException | JsonProcessingException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+}
+
