@@ -3,6 +3,9 @@ package exercise;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import org.junit.Test;
 
 public class Validator {
     public static List<String> validate(Address address) {
