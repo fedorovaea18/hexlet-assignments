@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
-import org.junit.Test;
-import java.util.Collections;
-import static org.junit.jupiter.api.Assertions.assertEquals;
      
 public class Validator {
     public static List<String> validate(Address address) {
@@ -63,18 +60,6 @@ public class Validator {
         }
         
         return errors;
-    }
-    
-    @Test
-    public void testAdvancedValidate() {
-        Address address = new Address("USA", "Texas", null, "7", "2");
-        Map<String, List<String>> notValidFields = Validator.advancedValidate(address);
-
-        Map<String, List<String>> expected = new HashMap<>();
-        expected.put("country", Collections.singletonList("length less than 4"));
-        expected.put("street", Collections.singletonList("can not be null"));
-
-        assertEquals(expected, notValidFields);
     }
 }
 
