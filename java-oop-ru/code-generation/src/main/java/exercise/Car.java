@@ -9,8 +9,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Getter
-@RequiredArgsConstructor
-@Getter
 class Car {
     int id;
     String brand;
