@@ -17,15 +17,10 @@ public class App {
         }
     }
 
-    public static Car extract(Path path) {
+    public static Car extract(Path path) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            String jsonCar = Files.readString(path);
-            return objectMapper.readValue(jsonCar, Car.class);
-        } catch (IOException | JsonProcessingException e) {
-            e.printStackTrace();
-            return null;
-        }
+        String jsonCar = Files.readString(path);
+        return objectMapper.readValue(jsonCar, Car.class);
     }
 }
 

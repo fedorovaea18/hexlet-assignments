@@ -14,6 +14,7 @@ class Car {
     String model;
     String color;
     User owner;
+    
  public String serialize() {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
@@ -29,3 +30,4 @@ class Car {
         return objectMapper.readValue(json, Car.class);
     }
 }
+
