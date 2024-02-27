@@ -2,7 +2,7 @@ package exercise;
 
 import lombok.Value;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.java.io.IOException;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -25,9 +25,9 @@ class Car {
         }
     }
 
-    public static Car unserialize(String json) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(json, Car.class);
+    public static Car unserialize(String json) throws IOException {
+    ObjectMapper objectMapper = new ObjectMapper();
+    return objectMapper.readValue(json, Car.class);
     }
 }
 
