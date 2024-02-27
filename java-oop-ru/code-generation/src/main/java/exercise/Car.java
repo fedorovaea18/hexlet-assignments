@@ -2,6 +2,7 @@ package exercise;
 
 import lombok.Value;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.IOException;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
