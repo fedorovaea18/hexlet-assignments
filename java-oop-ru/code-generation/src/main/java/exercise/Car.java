@@ -25,10 +25,5 @@ class Car {
             return null;
         }
     }
-
-public static Car unserialize(String json) throws IOException {
-    ObjectMapper objectMapper = new ObjectMapper();
-    return objectMapper.readValue(json, Car.class);
-}
 }
 
