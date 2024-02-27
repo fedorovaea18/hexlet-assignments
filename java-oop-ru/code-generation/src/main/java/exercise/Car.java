@@ -1,9 +1,7 @@
 package exercise;
 
-import lombok.Value;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import java.io.IOException;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -16,15 +14,15 @@ class Car {
     String color;
     User owner;
 
-    public Car(int id, String brand, String model, String color, User owner) {
+    Car(int id, String brand, String model, String color, User owner) {
         this.id = id;
         this.brand = brand;
         this.model = model;
         this.color = color;
         this.owner = owner;
     }
-    
- public String serialize() {
+ 
+    public String serialize() {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             return objectMapper.writeValueAsString(this);
