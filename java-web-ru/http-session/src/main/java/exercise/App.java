@@ -17,11 +17,11 @@ public final class App {
         // BEGIN
         app.get("/users", ctx -> {
             int page = ctx.queryParamAsClass("page", Integer.class).getOrDefault(1);
-            int perPage =  ctx.queryParamAsClass("per", Integer.class).getOrDefault(5);
+            int per =  ctx.queryParamAsClass("per", Integer.class).getOrDefault(5);
             List<Map<String, String>> usersResult = new ArrayList<>();
-            int start = (page - 1) * perPage;
+            int start = (page - 1) * per;
 
-            for (var i = start; i < Integer.min(users.size(),start + perPage ; i++) {
+            for (var i = start; i < Integer.min(users.size(),start + per) ; i++) {
                 usersResult.add(users.get(i));
             }
 
