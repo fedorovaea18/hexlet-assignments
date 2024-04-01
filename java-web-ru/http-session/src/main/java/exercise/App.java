@@ -16,8 +16,8 @@ public final class App {
 
         // BEGIN
         app.get("/users", ctx -> {
-            int page = ctx.queryParamAsClass("page", Integer.class, 1);
-            int perPage = ctx.queryParamAsClass("per", Integer.class, 5);
+            int page = ctx.queryParamAsClass("page", Integer.class).orElse(1);;
+            int perPage = ctx.queryParamAsClass("per", Integer.class).orElse(5);;
 
             int startIndex = (page - 1) * perPage;
             int endIndex = Math.min(startIndex + perPage, USERS.size());
