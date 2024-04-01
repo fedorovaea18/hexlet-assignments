@@ -16,15 +16,16 @@ public final class App {
 
         // BEGIN
         app.get("/users", ctx -> {
-    	    var page = ctx.queryParamAsClass("page", Integer.class, 1);
-            var perPage = ctx.queryParamAsClass("per", Integer.class, 5);
+            int page = ctx.queryParamAsClass("page", Integer.class, 1);
+            int perPage = ctx.queryParamAsClass("per", Integer.class, 5);
 
-            var startIndex = (page - 1) * perPage;
-            var endIndex = Math.min(startIndex + perPage, USERS.size());
+            int startIndex = (page - 1) * perPage;
+            int endIndex = Math.min(startIndex + perPage, USERS.size());
 
-                List<Map<String, String>> usersSubset = USERS.subList(startIndex, endIndex);
+            List<Map<String, String>> usersSubset = USERS.subList(startIndex, endIndex);
 
-    ctx.json(usersSubset);
+            ctx.json(usersSubset);
+        });
         // END
 
         return app;
