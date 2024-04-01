@@ -15,6 +15,8 @@ public final class App {
         });
 
         // BEGIN
+        List<Map<String, String>> users = Data.getUsers();
+
         app.get("/users", ctx -> {
             int page = ctx.queryParamAsClass("page", Integer.class).getOrDefault(1);
             int per =  ctx.queryParamAsClass("per", Integer.class).getOrDefault(5);
