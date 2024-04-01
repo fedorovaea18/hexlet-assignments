@@ -21,7 +21,7 @@ public final class App {
             List<Map<String, String>> usersResult = new ArrayList<>();
             int start = (page - 1) * perPage;
 
-            for (var i = start; i < Integer.min(users.size(),start + per)Page ; i++) {
+            for (var i = start; i < Integer.min(users.size(),start + perPage ; i++) {
                 usersResult.add(users.get(i));
             }
 
