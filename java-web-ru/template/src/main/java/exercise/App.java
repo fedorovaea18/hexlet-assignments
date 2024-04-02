@@ -1,10 +1,9 @@
-package exercise;
-
 import io.javalin.Javalin;
 import exercise.model.User;
 import exercise.dto.users.UserPage;
 import exercise.dto.users.UsersPage;
-import io.javalin.config.JavalinConfig;
+import io.javalin.http.Context;
+import io.javalin.http.NotFoundResponse;
 import java.util.Collections;
 import java.util.List;
 
@@ -14,18 +13,16 @@ public final class App {
 
     public static Javalin getApp() {
 
-        var app = Javalin.create(config -> {
-            config.enableDevLogging(); // Fix: Use enableDevLogging() method directly
-        });
+        var app = Javalin.create();
 
         app.get("/users", ctx -> {
-            var page = new UsersPage(USERS);
+            var page = new UsersPage();
             ctx.render("users/index.jte", Collections.singletonMap("page", page));
         });
 
-        app.get("/users/{id}", ctx -> {
-            var id = ctx.pathParamAsClass("id", Integer.class).get();
-            var user = USERS.stream()
+        app.get("/users/:id", ctx -> {
+            int id = ctx.pathParam("id", Integer.class).get();
+            User user = USERS.stream()
                     .filter(u -> u.getId() == id)
                     .findFirst()
                     .orElseThrow(() -> new NotFoundResponse("User not found"));
@@ -46,44 +43,3 @@ public final class App {
     }
 }
 
-
-public final class App {
-
-    // Каждый пользователь представлен объектом класса User
-    private static final List<User> USERS = Data.getUsers();
-
-    public static Javalin getApp() {
-
-        var app = Javalin.create(config -> {
-            config.enableDevLogging();
-        });
-
-        // BEGIN
-        app.get("/users", ctx -> {
-            var page = new UsersPage(USERS);
-            ctx.render("users/index.jte", Collections.singletonMap("page", page));
-        });
-
-        app.get("/users/{id}", ctx -> {
-            var id = ctx.pathParamAsClass("id", Integer.class).get();
-            var user = USERS.stream()
-                    .filter(u -> u.getId() == id)
-                    .findFirst()
-                    .orElseThrow(() -> new NotFoundResponse("User not found"));
-            var page = new UserPage(user);
-            ctx.render("users/show.jte", Collections.singletonMap("page", page));
-        });
-        // END
-
-        app.get("/", ctx -> {
-            ctx.render("index.jte");
-        });
-
-        return app;
-    }
-
-    public static void main(String[] args) {
-        Javalin app = getApp();
-        app.start(7070);
-    }
-}
