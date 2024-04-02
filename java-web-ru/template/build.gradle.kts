@@ -1,6 +1,5 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
-import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 
 plugins {
     id("com.github.ben-manes.versions") version "0.48.0"
@@ -20,14 +19,15 @@ repositories {
 }
 
 dependencies {
-    implementation("io.javalin:javalin:6.1.3")
+    implementation("io.javalin:javalin:5.6.1")
 
     // BEGIN
-    implementation("gg.jte:jte:3.1.0")
-    implementation("io.javalin:javalin-rendering:5.6.2")
+    implementation("gg.jte:jte:3.0.1")
+    implementation("io.javalin:javalin-rendering:5.6.0")
+    implementation("io.javalin:javalin-testtools:5.6.0")
     // END
 
-    implementation("io.javalin:javalin-bundle:6.1.3")
+    implementation("io.javalin:javalin-bundle:5.6.1")
     implementation("org.slf4j:slf4j-simple:2.0.7")
     implementation("net.datafaker:datafaker:2.0.1")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.15.0")
@@ -35,6 +35,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("org.assertj:assertj-core:3.23.1")
 }
+
 
 tasks.test {
     useJUnitPlatform()
@@ -47,3 +48,4 @@ tasks.test {
         showStandardStreams = true
     }
 }
+
