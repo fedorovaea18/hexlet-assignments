@@ -16,7 +16,7 @@ public final class App {
     public static Javalin getApp() {
 
         var app = Javalin.create(config -> {
-            config.plugins.enableDevLogging();
+            config.requestLogger(JavaLog.defaultLog());
         });
         
         // BEGIN
