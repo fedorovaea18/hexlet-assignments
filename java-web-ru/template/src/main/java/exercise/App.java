@@ -1,32 +1,40 @@
+package exercise;
+
 import io.javalin.Javalin;
+import java.util.List;
+import io.javalin.http.NotFoundResponse;
 import exercise.model.User;
 import exercise.dto.users.UserPage;
 import exercise.dto.users.UsersPage;
-import io.javalin.http.Context;
-import io.javalin.http.NotFoundResponse;
 import java.util.Collections;
-import java.util.List;
 
 public final class App {
 
+    // Каждый пользователь представлен объектом класса User
     private static final List<User> USERS = Data.getUsers();
 
     public static Javalin getApp() {
 
-        var app = Javalin.create();
-
-        app.get("/users", ctx -> {
-            var page = new UsersPage();
-            ctx.render("users/index.jte", Collections.singletonMap("page", page));
+        var app = Javalin.create(config -> {
+            config.plugins.enableDevLogging();
         });
 
-        app.get("/users/:id", ctx -> {
-            int id = ctx.pathParam("id", Integer.class).get();
+        app.get("/users", ctx -> {
+            var usersPage = new UsersPage(USERS);
+            ctx.render("users/index.jte", Collections.singletonMap("page", usersPage));
+        });
+
+        app.get("/users/{id}", ctx -> {
+
+            int id = Integer.parseInt(ctx.pathParam("id"));
+
             User user = USERS.stream()
-                    .filter(u -> u.getId() == id)
+                    .filter(u -> (u.getId() == id))
                     .findFirst()
                     .orElseThrow(() -> new NotFoundResponse("User not found"));
+
             var page = new UserPage(user);
+
             ctx.render("users/show.jte", Collections.singletonMap("page", page));
         });
 
