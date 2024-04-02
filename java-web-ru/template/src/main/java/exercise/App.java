@@ -16,37 +16,36 @@ public final class App {
 
     public static Javalin getApp() {
 
-        var app = Javalin.create(config -> {
-            config.plugins.enableDevLogging();
-        });
+            var app = Javalin.create(config -> {
+        config.requestLogger(new Logger());
+    });
 
-        app.get("/users", ctx -> {
-            var usersPage = new UsersPage(USERS);
-            ctx.render("users/index.jte", Collections.singletonMap("page", usersPage));
-        });
+    app.get("/users", ctx -> {
+        var usersPage = new UsersPage(USERS);
+        ctx.render("users/index.jte", Collections.singletonMap("page", usersPage));
+    });
 
-        // BEGIN
-        app.get("/users/{id}", ctx -> {
+    // BEGIN
+    app.get("/users/{id}", ctx -> {
+        int id = Integer.parseInt(ctx.pathParam("id"));
 
-            int id = Integer.parseInt(ctx.pathParam("id"));
+        User user = USERS.stream()
+                .filter(u -> (u.getId() == id))
+                .findFirst()
+                .orElseThrow(() -> new NotFoundResponse("User not found"));
 
-            User user = USERS.stream()
-                    .filter(u -> (u.getId() == id))
-                    .findFirst()
-                    .orElseThrow(() -> new NotFoundResponse("User not found"));
+        var page = new UserPage(user);
 
-            var page = new UserPage(user);
+        ctx.render("users/show.jte", Collections.singletonMap("page", page));
+    });        
+    // END
 
-            ctx.render("users/show.jte", Collections.singletonMap("page", page));
-        });        
-        // END
+    app.get("/", ctx -> {
+        ctx.render("index.jte");
+    });
 
-        app.get("/", ctx -> {
-            ctx.render("index.jte");
-        });
-
-        return app;
-    }
+    return app;
+}
 
     public static void main(String[] args) {
         Javalin app = getApp();
