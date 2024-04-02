@@ -7,8 +7,6 @@ import exercise.model.User;
 import exercise.dto.users.UserPage;
 import exercise.dto.users.UsersPage;
 import java.util.Collections;
- import path.to.JavalinJte;
-   
 
 
 public final class App {
@@ -19,8 +17,12 @@ public final class App {
     public static Javalin getApp() {
 
         var app = Javalin.create(config -> {
-            config.bundledPlugins.enableDevLogging();
-            config.fileRenderer(new JavalinJte());
+            config.plugins.enableDevLogging();
+        });
+
+        app.get("/users", ctx -> {
+            var usersPage = new UsersPage(USERS);
+            ctx.render("users/index.jte", Collections.singletonMap("page", usersPage));
         });
 
         // BEGIN
