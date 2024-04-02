@@ -8,7 +8,7 @@ import lombok.Getter;
 // BEGIN
 @AllArgsConstructor
 @Getter
-public class UserPage{
+public class UserPage {
     private User user;
 }
 // END
