@@ -19,24 +19,22 @@ public final class App {
             config.plugins.enableDevLogging();
         });
 
+        // BEGIN
         app.get("/users", ctx -> {
-            var usersPage = new UsersPage(USERS);
-            ctx.render("users/index.jte", Collections.singletonMap("page", usersPage));
+            var page = new UsersPage(USERS);
+            ctx.render("users/index.jte", Collections.singletonMap("page", page));
         });
 
         app.get("/users/{id}", ctx -> {
-
-            int id = Integer.parseInt(ctx.pathParam("id"));
-
-            User user = USERS.stream()
-                    .filter(u -> (u.getId() == id))
+            var id = ctx.pathParamAsClass("id", Integer.class).get();
+            var user = USERS.stream()
+                    .filter(u -> u.getId() == id)
                     .findFirst()
                     .orElseThrow(() -> new NotFoundResponse("User not found"));
-
             var page = new UserPage(user);
-
             ctx.render("users/show.jte", Collections.singletonMap("page", page));
         });
+        // END
 
         app.get("/", ctx -> {
             ctx.render("index.jte");
