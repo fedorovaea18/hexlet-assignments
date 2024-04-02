@@ -6,6 +6,7 @@ import io.javalin.http.NotFoundResponse;
 import exercise.model.User;
 import exercise.dto.users.UserPage;
 import exercise.dto.users.UsersPage;
+import java.util.Collections;
 
 public final class App {
 
