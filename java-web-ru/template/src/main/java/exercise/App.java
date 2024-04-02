@@ -7,7 +7,6 @@ import exercise.model.User;
 import exercise.dto.users.UserPage;
 import exercise.dto.users.UsersPage;
 import java.util.Collections;
-import io.javalin.http.util.JavaLog;
 
 
 public final class App {
@@ -18,7 +17,7 @@ public final class App {
     public static Javalin getApp() {
 
         var app = Javalin.create(config -> {
-            config.requestLogger(JavaLog.defaultLog());
+            config.plugins.enableDevLogging();
         });
 
         // BEGIN
