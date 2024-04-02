@@ -16,9 +16,9 @@ public final class App {
     public static Javalin getApp() {
 
         var app = Javalin.create(config -> {
-            config.bundledPlugins.enableDevLogging();
+            config.plugins.enableDevLogging();
         });
-
+        
         // BEGIN
         app.get("/users", ctx -> {
             var page = new UsersPage(USERS);
