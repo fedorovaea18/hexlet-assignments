@@ -6,6 +6,7 @@ import java.util.List;
 import exercise.model.User;
 import exercise.dto.users.UsersPage;
 import java.util.Collections;
+import io.javalin.rendering.template.JavalinJte;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
