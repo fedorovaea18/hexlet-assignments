@@ -1,7 +1,6 @@
 
 import io.javalin.Javalin;
 
-import java.util.ArrayList;
 import java.util.List;
 import exercise.model.User;
 import exercise.dto.users.UsersPage;
@@ -36,7 +35,7 @@ public final class App {
             }
             var page = new UsersPage(users, term);
             ctx.render("users/index.jte", Collections.singletonMap("page", page));
-        });  
+        });
         // END
 
         app.get("/", ctx -> {
