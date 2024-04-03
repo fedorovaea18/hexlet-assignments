@@ -5,7 +5,7 @@ public final class App {
     public static Javalin getApp() {
 
         var app = Javalin.create(config -> {
-            config.bundledPlugins.enableDevLogging();
+            config.plugins.enableDevLogging();
         });
 
         List<String> users = List.of("John", "Mark", "Ann");
@@ -25,7 +25,7 @@ public final class App {
             }
 
             var page = new UsersPage(users, cond);
-            ctx.render("users/index.jte", model("page", page));
+            ctx.render("users/index.jte", Collections.singletonMap("page", page));
         });
 
         return app;

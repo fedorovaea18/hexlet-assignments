@@ -21,10 +21,10 @@ repositories {
 }
 
 dependencies {
-    implementation("io.javalin:javalin:6.1.3")
+    implementation("io.javalin:javalin:5.6.1")
 
-    implementation("gg.jte:jte:3.1.9")
-    implementation("io.javalin:javalin-rendering:6.1.3")
+    implementation("gg.jte:jte:3.0.1")
+    implementation("io.javalin:javalin-rendering:5.6.0")
     implementation("org.slf4j:slf4j-simple:2.0.7")
     implementation("net.datafaker:datafaker:2.0.1")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.15.0")
