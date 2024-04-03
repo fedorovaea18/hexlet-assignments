@@ -1,22 +1,18 @@
-
-import io.javalin.Javalin;
-
-import java.util.List;
 import exercise.model.User;
 import exercise.dto.users.UsersPage;
-import java.util.Collections;
+import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinJte;
-import java.util.stream.Collectors;
-
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.List;
+import java.util.Collections;
+import java.util.stream.Collectors;
 
 public final class App {
 
-    // Каждый пользователь представлен объектом класса User
     private static final List<User> USERS = Data.getUsers();
 
     public static Javalin getApp() {
-
         var app = Javalin.create(config -> {
             config.bundledPlugins.enableDevLogging();
             config.fileRenderer(new JavalinJte());
@@ -50,3 +46,4 @@ public final class App {
         app.start(7070);
     }
 }
+
