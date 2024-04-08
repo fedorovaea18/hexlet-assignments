@@ -16,10 +16,20 @@ public final class App {
     public static Javalin getApp() {
 
         var app = Javalin.create(config -> {
-            config.bundledPlugins.enableDevLogging();
-            config.fileRenderer(new JavalinJte());
+            config.plugins.enableDevLogging();
         });
 
+        app.get("/", ctx -> {
+            ctx.render("index.jte");
+        });
+
+        app.get("/articles", ctx -> {
+            List<Article> articles = ArticleRepository.getEntities();
+            var page = new ArticlesPage(articles);
+            ctx.render("articles/index.jte", Collections.singletonMap("page", page));
+        });
+
+        // BEGIN
         app.get("/articles/build", ctx -> {
            var page = new BuildArticlePage();
            ctx.render("articles/build.jte", Collections.singletonMap("page", page));
