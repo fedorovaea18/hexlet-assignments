@@ -37,10 +37,10 @@ public final class App {
         });
 
         app.post("/articles", ctx -> {
-           var title =  ctx.formParam("title");
-           var content = ctx.formParam("content");
+            var title =  ctx.formParam("title");
+            var content = ctx.formParam("content");
 
-           try {
+            try {
                 ctx.formParamAsClass("title", String.class)
                        .check(t -> t.length() > 2, "Название не должно быть короче двух символов")
                        .check(t -> !ArticleRepository.existsByTitle(t), "Статья с таким названием уже существует")
