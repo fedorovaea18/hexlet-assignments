@@ -19,30 +19,34 @@ public class UsersController {
     }
 
     // BEGIN
-    public static void create(Context ctx) {
-        var firstName = ctx.formParamAsClass("firstName", String.class).get();
-        var lastName = ctx.formParamAsClass("lastName", String.class).get();
-        var email = ctx.formParamAsClass("email", String.class).get();
-        var pass = ctx.formParamAsClass("password", String.class).get();
+    public static void create (Context ctx) {
+        var firstName = ctx.formParam("firstName").trim();
+        var lastName = ctx.formParam("lastName").trim();
+        var email = ctx.formParam("email").trim().toLowerCase();
+        var password = ctx.formParamAsClass("password", String.class).get();
         var token = Security.generateToken();
+        ctx.cookie("token", token);
+        var user = new User(firstName, lastName, email, password,  token);
 
-        var user = new User(firstName, lastName, email, pass, token);
+
         UserRepository.save(user);
-        ctx.redirect(NamedRoutes.userPath(user.getId()));
-        ctx.cookie("TOKEN", token);
+        var id = user.getId();
+        var path = NamedRoutes.userPath(id);
+        ctx.redirect(path);
+
     }
 
-    public static void show(Context ctx) {
-        var id = ctx.pathParamAsClass("id", Long.class).get();
-        var token = ctx.cookie("TOKEN");
-        var user = UserRepository.find(id)
-                .orElseThrow(() -> new NotFoundResponse("User not found"));
+    public static void show (Context ctx) {
 
-        if (user.getToken().equals(token)) {
-            ctx.render("users/show.jte", Collections.singletonMap("user", user));
+        var id = ctx.pathParam("id");
+
+        var user = UserRepository.find(Long.valueOf(id)).get();
+        var page = new UserPage(user);
+        if ( user.getToken().equals(ctx.cookie("token"))) {
+            ctx.render("users/show.jte", Collections.singletonMap("page", page));
         } else {
             ctx.redirect(NamedRoutes.buildUserPath());
         }
-    }    
+    }
     // END
 }
