@@ -21,15 +21,9 @@ public class ContactsController {
     private ContactRepository contactRepository;
 
     // BEGIN
-@RestController
-@RequestMapping("/contacts")
-public class ContactsController {
-    @Autowired
-    private ContactRepository repository;
-
-    @PostMapping("/posts")
+    @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public ContactDTO create(@RequestBody ContactCreateDTO ContactData) {
+    public ContactDTO create(@RequestBody ContactCreateDTO contactData) {
         var contact = toEntity(contactData); 
         contactRepository.save(contact);
         var contactDTO = toDTO(contact); 
@@ -44,15 +38,15 @@ public class ContactsController {
         dto.setPhone(contact.getPhone());
         dto.setCreatedAt(contact.getCreatedAt());
         dto.setUpdatedAt(contact.getUpdatedAt());
-        return contact;
+        return dto;
     }
 
-    private Contact toEntity(PostCreateDTO postDto) {
+    private Contact toEntity(ContactCreateDTO contactDto) {
         var contact = new Contact();
-        contact.setFirstName(contact.getFirstName());
-        contact.setLastName(contact.getLastName());
-        contact.setPhone(contact.getPhone());
-        return dto;
+        contact.setFirstName(contactDto.getFirstName());
+        contact.setLastName(contactDto.getLastName());
+        contact.setPhone(contactDto.getPhone());
+        return contact;
     }
 }
     // END
