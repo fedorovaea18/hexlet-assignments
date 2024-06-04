@@ -11,12 +11,22 @@ import org.springframework.stereotype.Service;
 // BEGIN
 @Service
 public class CustomUserDetailsService implements UserDetailsManager {
+
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
-    public void createUser(UserDetails user) {
-        throw new UnsupportedOperationException("Unimplemented method 'createUser'");
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    }
+
+    @Override
+    public void createUser(UserDetails userData) {
+        throw new UnsupportedOperationException("Unimplemented method 'updateUser'");
     }
 
     @Override
@@ -37,12 +47,6 @@ public class CustomUserDetailsService implements UserDetailsManager {
     @Override
     public boolean userExists(String username) {
         throw new UnsupportedOperationException("Unimplemented method 'userExists'");
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 }
 // END

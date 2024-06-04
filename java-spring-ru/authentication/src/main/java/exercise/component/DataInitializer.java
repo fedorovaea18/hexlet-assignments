@@ -13,8 +13,6 @@ import lombok.AllArgsConstructor;
 @Component
 @AllArgsConstructor
 public class DataInitializer implements ApplicationRunner {
-
-
     @Autowired
     private final UserRepository userRepository;
 
